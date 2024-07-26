@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity ou PlayStore</title>
+    <script>
+        function UnityouPlayStore() {
+            // Tenta abrir o aplicativo
+            window.location = "deeper://linkexterno?scene=Cena2"; // Substitua "myapp" pelo seu esquema e a URL correta para seu deep link
+
+            // Se o aplicativo não estiver instalado, redireciona para a PlayStore após 1 segundo
+            setTimeout(function() {
+                window.location = "https://play.google.com/store/apps/details?id=br.com.unoeste.unoestebetha&hl=pt_BR"; // Substitua pelo link da sua aplicação na PlayStore
+            }, 1000);
+        }
+    </script>
+</head>
+<body onload="UnityouPlayStore()">
+<p>Redirecionando...</p>
+</body>
+</html>
