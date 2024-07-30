@@ -5,14 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity ou PlayStore</title>
     <script>
-        function UnityouPlayStore() {
-            // Tenta abrir o aplicativo
-            window.location = "deeper://linkexterno?scene=Cena2"; // Substitua "myapp" pelo seu esquema e a URL correta para seu deep link
+        //Declarando Variaveis
+        let plataforma;
+        plataforma = navigator.userAgent;
 
-            // Se o aplicativo não estiver instalado, redireciona para a PlayStore após 1 segundo
-            setTimeout(function() {
-                window.location = "https://play.google.com/store/apps/details?id=br.com.unoeste.unoestebetha&hl=pt_BR"; // Substitua pelo link da sua aplicação na PlayStore
-            }, 1000);
+        function VerificaPlataforma(){
+            //Verificando se eh androide
+            if (plataforma.includes("Android")) {
+                console.log("eh androide")
+                return "Android"
+            }
+            if (plataforma.includes("iPhone") || plataforma.includes("iPad")) {
+                console.log("eh IOS")
+                return "iOS"
+            }
+
+            if (plataforma.includes("Windows")){
+                console.log("eh PC")
+                return "Windows"
+            }
+
+        }
+
+        function UnityouPlayStore() {
+            let exec, url;
+            let verificacao = VerificaPlataforma();
+
+            url = "https://educ3d.com/cl/Unoeste/Unoeste_Betha/v15/?RAFZVhuv23102"
+
+            if (verificacao == "Android"){
+                // Tenta abrir o aplicativo
+                window.location = "deeper://linkexterno?scene=Cena2"; // Substitua "myapp" pelo seu esquema e a URL correta para seu deep link
+
+                // Se o aplicativo não estiver instalado, redireciona para a PlayStore após 1 segundo
+                setTimeout(function() {
+                    window.location = "https://play.google.com/store/apps/details?id=br.com.unoeste.unoestebetha&hl=pt_BR"; // Substitua pelo link da sua aplicação na PlayStore
+                }, 1000);
+            }
+            if (verificacao == "iOS"){
+                //nd  por enquanto
+            }
+            if (verificacao == "Windows"){
+                open(url)
+            }
         }
     </script>
 </head>
@@ -20,3 +55,4 @@
 <p>Redirecionando...</p>
 </body>
 </html>
+
