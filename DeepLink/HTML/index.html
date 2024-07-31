@@ -6,12 +6,16 @@
     <title>Unity ou PlayStore</title>
     <script>
         //Declarando Variaveis
-        let plataforma;
+        let plataforma, sistema;
+        let QtdToques;
         plataforma = navigator.userAgent;
+        sistema = navigator.platform;
+        QtdToques = navigator.maxTouchPoints;
 
+        console.log(sistema);
         function VerificaPlataforma(){
             //Verificando se eh androide
-            if (plataforma.includes("Android")) {
+            if ((plataforma.includes("Android")) && (sistema.includes("Linux"))) {
                 console.log("eh androide")
                 return "Android"
             }
@@ -20,9 +24,19 @@
                 return "iOS"
             }
 
-            if (plataforma.includes("Windows")){
+            if ((plataforma.includes("Windows")) && (sistema.includes("Win32"))){
                 console.log("eh PC")
                 return "Windows"
+            }
+            if(sistema.includes("MacIntel")){
+                if (QtdToques > 1){
+                    console.log("eh IOS")
+                    return "iOS"
+                }
+                else {
+                    console.log("eh MAC")
+                    return "MAC"
+                }
             }
 
         }
@@ -30,7 +44,7 @@
         function UnityouPlayStore() {
             let exec, url;
             let verificacao = VerificaPlataforma();
-
+            console.log(verificacao)
             url = "https://educ3d.com/cl/Unoeste/Unoeste_Betha/v15/?RAFZVhuv23102"
 
             if (verificacao == "Android"){
@@ -43,7 +57,13 @@
                 }, 1000);
             }
             if (verificacao == "iOS"){
-                //nd  por enquanto
+
+                window.location.href = "deeper://linkexterno?scene=Cena2"; // Substitua "myapp" pelo seu esquema e a URL correta para seu deep link
+
+                // Se o aplicativo não estiver instalado, redireciona para a PlayStore após 1 segundo
+                setTimeout(function() {
+                    window.location = "https://apps.apple.com/br/app/unoeste-betha/id6449226488"; // Substitua pelo link da sua aplicação na PlayStore
+                }, 2000);
             }
             if (verificacao == "Windows"){
                 open(url)
@@ -52,7 +72,92 @@
     </script>
 </head>
 <body onload="UnityouPlayStore()">
-<p>Redirecionando...</p>
+<p>Redirecionando...v5</p>
+</body>
+</html>
+<!--
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity ou PlayStore</title>
+    <script>
+        //Declarando Variaveis
+        let plataforma, sistema;
+        let QtdToques;
+        plataforma = navigator.userAgent;
+        sistema = navigator.platform;
+        QtdToques = navigator.maxTouchPoints;
+
+        console.log(sistema);
+        function VerificaPlataforma(){
+            //Verificando se eh androide
+            if ((plataforma.includes("Android")) && (sistema.includes("Linux"))) {
+                console.log("eh androide")
+                return "Android"
+            }
+            if (plataforma.includes("iPhone") || plataforma.includes("iPad")) {
+                console.log("eh IOS")
+                return "iOS"
+            }
+
+            if ((plataforma.includes("Windows")) && (sistema.includes("Win32"))){
+                console.log("eh PC")
+                return "Windows"
+            }
+            if(sistema.includes("MacIntel")){
+                if (QtdToques > 1){
+                    console.log("eh IOS")
+                    return "iOS"
+                }
+                else {
+                    console.log("eh MAC")
+                    return "MAC"
+                }
+            }
+
+        }
+
+        function UnityouPlayStore() {
+            let exec, url;
+            let verificacao = VerificaPlataforma();
+            console.log(verificacao)
+            url = "https://educ3d.com/cl/Unoeste/Unoeste_Betha/v15/?RAFZVhuv23102"
+
+            if (verificacao == "Android"){
+                // Tenta abrir o aplicativo
+                window.location = "deeper://linkexterno?scene=Cena2"; //  URL correta para a deep link
+
+                // Se o aplicativo não estiver instalado, redireciona para a PlayStore após 1 segundo
+                setTimeout(function() {
+                    window.location = "https://play.google.com/store/apps/details?id=br.com.unoeste.unoestebetha&hl=pt_BR"; // Substitua pelo link da sua aplicação na PlayStore
+                }, 1000);
+            }
+            if (verificacao == "iOS"){
+                try {
+                    window.location = "deeper://linkexterno?scene=Cena2"; // Substitua "myapp" pelo seu esquema e a URL correta para seu deep link
+                }
+                catch (error){
+                    console.error("Erro ao tentar abrir o aplicativo:", error);
+
+                    // Se o aplicativo não estiver instalado, redireciona para a PlayStore após 1 segundo
+                    setTimeout(function() {
+                        window.location = "https://apps.apple.com/br/app/unoeste-betha/id6449226488"; // Substitua pelo link da sua aplicação na PlayStore
+                    }, 1000);
+                }
+
+            }
+            if (verificacao == "Windows"){
+                open(url)
+            }
+        }
+    </script>
+</head>
+<body onload="UnityouPlayStore()">
+<p>Redirecionando...v6</p>
 </body>
 </html>
 
+
+-->
